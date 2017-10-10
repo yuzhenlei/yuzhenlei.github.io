@@ -53,7 +53,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="zerO, 于振磊, blog, Blog, yuzhenlei" />
+  <meta name="keywords" content="PHP,PhpStorm,Debug," />
 
 
 
@@ -69,13 +69,31 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="zerO&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="久闻Xdebug大名，但一直没用过，今天尝试了一番，瞬间感觉自己之前的调试方法好low啊，而且还得到了意外的收获，话不多说，上过程。在用它之前先大概了解下xdebug是干嘛的，这里有篇文章介绍了Xdebug原理。 Xdebug下载安装根据自己的PHP环境，去Xdebug官网下载相应的扩展是不是感觉版本比较多，不知道哪个合适，输入以下命令1php -i 把输出的内容，粘贴到https://xdebu">
+<meta name="keywords" content="PHP,PhpStorm,Debug">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Xdebug配置">
+<meta property="og:url" content="http://yoursite.com/2017/10/09/xdebug/index.html">
 <meta property="og:site_name" content="zerO&#39;s Blog">
+<meta property="og:description" content="久闻Xdebug大名，但一直没用过，今天尝试了一番，瞬间感觉自己之前的调试方法好low啊，而且还得到了意外的收获，话不多说，上过程。在用它之前先大概了解下xdebug是干嘛的，这里有篇文章介绍了Xdebug原理。 Xdebug下载安装根据自己的PHP环境，去Xdebug官网下载相应的扩展是不是感觉版本比较多，不知道哪个合适，输入以下命令1php -i 把输出的内容，粘贴到https://xdebu">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2017/10/09/xdebug/2017-10-10%2000-33-34.png">
+<meta property="og:image" content="http://yoursite.com/2017/10/09/xdebug/2017-10-10%2023-01-42.png">
+<meta property="og:image" content="http://yoursite.com/2017/10/09/xdebug/2017-10-10%2023-05-18.png">
+<meta property="og:image" content="http://yoursite.com/2017/10/09/xdebug/2017-10-10%2023-10-05.png">
+<meta property="og:image" content="http://yoursite.com/2017/10/09/xdebug/2017-10-10%2023-21-45.png">
+<meta property="og:image" content="http://yoursite.com/2017/10/09/xdebug/2017-10-10%2023-23-23.png">
+<meta property="og:image" content="http://yoursite.com/2017/10/09/xdebug/2017-10-10%2023-24-24.png">
+<meta property="og:image" content="http://yoursite.com/2017/10/09/xdebug/2017-10-10%2023-29-10.png">
+<meta property="og:image" content="http://yoursite.com/2017/10/09/xdebug/2017-10-10%2023-35-21.png">
+<meta property="og:image" content="http://yoursite.com/2017/10/09/xdebug/draw.png">
+<meta property="og:image" content="http://yoursite.com/2017/10/09/xdebug/2017-10-10%2023-39-48.png">
+<meta property="og:image" content="http://yoursite.com/2017/10/09/xdebug/2017-10-11%2000-03-36.png">
+<meta property="og:updated_time" content="2017-10-10T16:09:37.788Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="zerO&#39;s Blog">
+<meta name="twitter:title" content="Xdebug配置">
+<meta name="twitter:description" content="久闻Xdebug大名，但一直没用过，今天尝试了一番，瞬间感觉自己之前的调试方法好low啊，而且还得到了意外的收获，话不多说，上过程。在用它之前先大概了解下xdebug是干嘛的，这里有篇文章介绍了Xdebug原理。 Xdebug下载安装根据自己的PHP环境，去Xdebug官网下载相应的扩展是不是感觉版本比较多，不知道哪个合适，输入以下命令1php -i 把输出的内容，粘贴到https://xdebu">
+<meta name="twitter:image" content="http://yoursite.com/2017/10/09/xdebug/2017-10-10%2000-33-34.png">
 
 
 
@@ -105,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/10/09/xdebug/"/>
 
 
 
 
 
-  <title>zerO's Blog - zerO</title>
+  <title>Xdebug配置 | zerO's Blog</title>
   
 
 
@@ -130,8 +148,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -234,9 +251,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -266,9 +283,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/09/xdebug/" itemprop="url">Xdebug配置</a></h2>
+          <h2 class="post-title" itemprop="name headline">Xdebug配置</h2>
         
 
         <div class="post-meta">
@@ -340,20 +355,15 @@
       
 
       
-        
-          
-          久闻Xdebug大名，但一直没用过，今天尝试了一番，瞬间感觉自己之前的调试方法好low啊，而且还得到了意外的收获，话不多说，上过程。在用它之前先大概了解下xdebug是干嘛的，这里有篇文章介绍了Xdebug原理。
-Xdebug下载安装
-根据自己的PHP环境，去Xdebug官网下载相应的扩展是不是感觉
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/10/09/xdebug/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+        <p>久闻Xdebug大名，但一直没用过，今天尝试了一番，瞬间感觉自己之前的调试方法好low啊，而且还得到了意外的收获，话不多说，上过程。<br>在用它之前先大概了解下xdebug是干嘛的，这里有篇文章介绍了<a href="https://laravel-china.org/articles/4090/the-first-step-to-becoming-a-senior-php-programmer-debugging-xdebug-principle" target="_blank" rel="external">Xdebug原理</a>。</p>
+<h2 id="Xdebug下载安装"><a href="#Xdebug下载安装" class="headerlink" title="Xdebug下载安装"></a>Xdebug下载安装</h2><p>根据自己的PHP环境，去<a href="https://xdebug.org/" target="_blank" rel="external">Xdebug官网</a>下载相应的扩展<br><img src="2017-10-10 00-33-34.png" alt=""><br>是不是感觉版本比较多，不知道哪个合适，输入以下命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">php -i</div></pre></td></tr></table></figure></p>
+<p>把输出的内容，粘贴到<a href="https://xdebug.org/wizard.php" target="_blank" rel="external">https://xdebug.org/wizard.php</a>这里，系统会自动推荐给你合适的版本。<br>下载并解压安装包，cd到你的解压目录下，输入以下命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">./configure</div><div class="line">make</div><div class="line">make install</div></pre></td></tr></table></figure></p>
+<p>在你的php.ini配置中加入以下内容<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Zend_extension=xdebug.so</div><div class="line">[Xdebug]</div><div class="line">xdebug.remote_enable = 1</div></pre></td></tr></table></figure></p>
+<p>之前extension前面没加zend，结果一直没反应，这点要注意，Xdebug只能用zend_extension,至于它们之间的区别，请自行Google。<br>重启nginx或者apache，然后通过phpinfo()查看Xdebug是否安装成功且正常启用。<br><img src="2017-10-10 23-01-42.png" alt=""><br>记住上面的端口号，一般都是默认9000。</p>
+<h2 id="配置PhpStorm"><a href="#配置PhpStorm" class="headerlink" title="配置PhpStorm"></a>配置PhpStorm</h2><p>进到phpstorm设置<br><img src="2017-10-10 23-05-18.png" alt=""><br>查看Debug port端口是否和刚刚记住的端口号一致，不一致请自行修改为phpinfo()上显示的端口。<br>给PhpStorm添加一个Server，参考下图设置<br><img src="2017-10-10 23-10-05.png" alt=""><br>添加PHP Web Application，具体步骤参考下图<br><img src="2017-10-10 23-21-45.png" alt=""><br><img src="2017-10-10 23-23-23.png" alt=""><br><img src="2017-10-10 23-24-24.png" alt=""><br>添加这个是能通过点击菜单Run-&gt;Debug-&gt;你的web application的名字，然后在浏览器打开一个带有debug标志链接的页面，像下图这样<br><img src="2017-10-10 23-29-10.png" alt=""></p>
+<h2 id="有用的chrome扩展-Xdebug-helper"><a href="#有用的chrome扩展-Xdebug-helper" class="headerlink" title="有用的chrome扩展(Xdebug helper)"></a>有用的chrome扩展(Xdebug helper)</h2><p>chrome应用商店下载<br><img src="2017-10-10 23-35-21.png" alt=""><br>记得在IDE key那里选择相应的IDE。</p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>点亮小电话，电话两头都变绿，开启调试监听，参考下图<br><img src="draw.png" alt=""><br>建立一个测试文件，像下图那样设置一个断点<br><img src="2017-10-10 23-39-48.png" alt=""><br>运行，参考下图，发现只有d1一个变量，断点起作用了，说明Xdebug配置成功<br><img src="2017-10-11 00-03-36.png" alt=""><br>然后你就可以感受Xdebug的强大了。</p>
+
       
     </div>
     
@@ -368,291 +378,40 @@ Xdebug下载安装
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/25/experience/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="于振磊">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/zero.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zerO's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/09/25/experience/" itemprop="url">首次体验hexo，逼格挺高</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-25T23:07:35+08:00">
-                2017-09-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Diary/" itemprop="url" rel="index">
-                    <span itemprop="name">Diary</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/PHP/" rel="tag"># PHP</a>
           
-
+            <a href="/tags/PhpStorm/" rel="tag"># PhpStorm</a>
           
-            
+            <a href="/tags/Debug/" rel="tag"># Debug</a>
           
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
+      
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+      
       
       
 
       
-        
-          
-          测试json1234&#123;    "err": 404,    "data": "404"&#125;
-测试php(不知道行不行)123&lt;?php  echo 'Hello World!';?&gt;
-挺好！！
-
-          
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/09/25/experience/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/25/experience/" rel="next" title="首次体验hexo，逼格挺高">
+                <i class="fa fa-chevron-left"></i> 首次体验hexo，逼格挺高
+              </a>
+            
           </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
 
-    
+          <span class="post-nav-divider"></span>
 
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/25/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="于振磊">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/zero.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zerO's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/09/25/hello-world/" itemprop="url">Hello World</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+          <div class="post-nav-prev post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-25T22:28:32+08:00">
-                2017-09-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-          Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in 
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/09/25/hello-world/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -662,10 +421,11 @@ Xdebug下载安装
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -673,6 +433,10 @@ Xdebug下载安装
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -693,8 +457,17 @@ Xdebug下载安装
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           
             <img class="site-author-image" itemprop="image"
@@ -773,6 +546,22 @@ Xdebug下载安装
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Xdebug下载安装"><span class="nav-number">1.</span> <span class="nav-text">Xdebug下载安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置PhpStorm"><span class="nav-number">2.</span> <span class="nav-text">配置PhpStorm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#有用的chrome扩展-Xdebug-helper"><span class="nav-number">3.</span> <span class="nav-text">有用的chrome扩展(Xdebug helper)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用"><span class="nav-number">4.</span> <span class="nav-text">使用</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
