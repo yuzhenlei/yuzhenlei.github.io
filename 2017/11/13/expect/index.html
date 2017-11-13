@@ -53,7 +53,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="PHP,PhpStorm,Debug," />
+  <meta name="keywords" content="linux,shell," />
 
 
 
@@ -69,31 +69,18 @@
 
 
 
-<meta name="description" content="久闻Xdebug大名，但一直没用过，今天尝试了一番，瞬间感觉自己之前的调试方法好low啊，而且还得到了意外的收获，话不多说，上过程。在用它之前先大概了解下xdebug是干嘛的，这里有篇文章介绍了Xdebug原理。 Xdebug下载安装根据自己的PHP环境，去Xdebug官网下载相应的扩展是不是感觉版本比较多，不知道哪个合适，输入以下命令1php -i 把输出的内容，粘贴到https://xdebu">
-<meta name="keywords" content="PHP,PhpStorm,Debug">
+<meta name="description" content="故事的开始当然是具体需求了，为了省点流量，平时上网都用openvpn，所以每次连接都要输帐号密码，感觉太麻烦了，如果能写个脚本模拟键盘输入，那岂不是爽歪歪了，基于这个想法我就去网上找了找方法，果不其然，Google还是挺给力的，让我找到了expect这个玩意，废话不多说，进入正题。 expect是基于Tcl的，至于Tcl是什么，自己去网上搜搜吧，这里先给个页面很好看的expect教程，原理和语法可">
+<meta name="keywords" content="linux,shell">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Xdebug配置">
-<meta property="og:url" content="http://yoursite.com/2017/10/09/xdebug/index.html">
+<meta property="og:title" content="expect-自动交互脚本安装配置">
+<meta property="og:url" content="http://yoursite.com/2017/11/13/expect/index.html">
 <meta property="og:site_name" content="zerO&#39;s Blog">
-<meta property="og:description" content="久闻Xdebug大名，但一直没用过，今天尝试了一番，瞬间感觉自己之前的调试方法好low啊，而且还得到了意外的收获，话不多说，上过程。在用它之前先大概了解下xdebug是干嘛的，这里有篇文章介绍了Xdebug原理。 Xdebug下载安装根据自己的PHP环境，去Xdebug官网下载相应的扩展是不是感觉版本比较多，不知道哪个合适，输入以下命令1php -i 把输出的内容，粘贴到https://xdebu">
+<meta property="og:description" content="故事的开始当然是具体需求了，为了省点流量，平时上网都用openvpn，所以每次连接都要输帐号密码，感觉太麻烦了，如果能写个脚本模拟键盘输入，那岂不是爽歪歪了，基于这个想法我就去网上找了找方法，果不其然，Google还是挺给力的，让我找到了expect这个玩意，废话不多说，进入正题。 expect是基于Tcl的，至于Tcl是什么，自己去网上搜搜吧，这里先给个页面很好看的expect教程，原理和语法可">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2017/10/09/xdebug/2017-10-10%2000-33-34.png">
-<meta property="og:image" content="http://yoursite.com/2017/10/09/xdebug/2017-10-10%2023-01-42.png">
-<meta property="og:image" content="http://yoursite.com/2017/10/09/xdebug/2017-10-10%2023-05-18.png">
-<meta property="og:image" content="http://yoursite.com/2017/10/09/xdebug/2017-10-10%2023-10-05.png">
-<meta property="og:image" content="http://yoursite.com/2017/10/09/xdebug/2017-10-10%2023-21-45.png">
-<meta property="og:image" content="http://yoursite.com/2017/10/09/xdebug/2017-10-10%2023-23-23.png">
-<meta property="og:image" content="http://yoursite.com/2017/10/09/xdebug/2017-10-10%2023-24-24.png">
-<meta property="og:image" content="http://yoursite.com/2017/10/09/xdebug/2017-10-10%2023-29-10.png">
-<meta property="og:image" content="http://yoursite.com/2017/10/09/xdebug/2017-10-10%2023-35-21.png">
-<meta property="og:image" content="http://yoursite.com/2017/10/09/xdebug/draw.png">
-<meta property="og:image" content="http://yoursite.com/2017/10/09/xdebug/2017-10-10%2023-39-48.png">
-<meta property="og:image" content="http://yoursite.com/2017/10/09/xdebug/2017-10-11%2000-03-36.png">
-<meta property="og:updated_time" content="2017-11-13T14:54:27.084Z">
+<meta property="og:updated_time" content="2017-11-13T15:38:03.639Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Xdebug配置">
-<meta name="twitter:description" content="久闻Xdebug大名，但一直没用过，今天尝试了一番，瞬间感觉自己之前的调试方法好low啊，而且还得到了意外的收获，话不多说，上过程。在用它之前先大概了解下xdebug是干嘛的，这里有篇文章介绍了Xdebug原理。 Xdebug下载安装根据自己的PHP环境，去Xdebug官网下载相应的扩展是不是感觉版本比较多，不知道哪个合适，输入以下命令1php -i 把输出的内容，粘贴到https://xdebu">
-<meta name="twitter:image" content="http://yoursite.com/2017/10/09/xdebug/2017-10-10%2000-33-34.png">
+<meta name="twitter:title" content="expect-自动交互脚本安装配置">
+<meta name="twitter:description" content="故事的开始当然是具体需求了，为了省点流量，平时上网都用openvpn，所以每次连接都要输帐号密码，感觉太麻烦了，如果能写个脚本模拟键盘输入，那岂不是爽歪歪了，基于这个想法我就去网上找了找方法，果不其然，Google还是挺给力的，让我找到了expect这个玩意，废话不多说，进入正题。 expect是基于Tcl的，至于Tcl是什么，自己去网上搜搜吧，这里先给个页面很好看的expect教程，原理和语法可">
 
 
 
@@ -123,13 +110,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/10/09/xdebug/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/11/13/expect/"/>
 
 
 
 
 
-  <title>Xdebug配置 | zerO's Blog</title>
+  <title>expect-自动交互脚本安装配置 | zerO's Blog</title>
   
 
 
@@ -266,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/09/xdebug/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/13/expect/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="于振磊">
@@ -283,7 +270,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Xdebug配置</h2>
+          <h2 class="post-title" itemprop="name headline">expect-自动交互脚本安装配置</h2>
         
 
         <div class="post-meta">
@@ -295,8 +282,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-09T23:51:21+08:00">
-                2017-10-09
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-13T23:38:03+08:00">
+                2017-11-13
               </time>
             
 
@@ -318,8 +305,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/实践/" itemprop="url" rel="index">
-                    <span itemprop="name">实践</span>
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
                   </a>
                 </span>
 
@@ -355,14 +342,19 @@
       
 
       
-        <p>久闻Xdebug大名，但一直没用过，今天尝试了一番，瞬间感觉自己之前的调试方法好low啊，而且还得到了意外的收获，话不多说，上过程。<br>在用它之前先大概了解下xdebug是干嘛的，这里有篇文章介绍了<a href="https://laravel-china.org/articles/4090/the-first-step-to-becoming-a-senior-php-programmer-debugging-xdebug-principle" target="_blank" rel="external">Xdebug原理</a>。</p>
-<h2 id="Xdebug下载安装"><a href="#Xdebug下载安装" class="headerlink" title="Xdebug下载安装"></a>Xdebug下载安装</h2><p>根据自己的PHP环境，去<a href="https://xdebug.org/" target="_blank" rel="external">Xdebug官网</a>下载相应的扩展<br><img src="2017-10-10 00-33-34.png" alt=""><br>是不是感觉版本比较多，不知道哪个合适，输入以下命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">php -i</div></pre></td></tr></table></figure></p>
-<p>把输出的内容，粘贴到<a href="https://xdebug.org/wizard.php" target="_blank" rel="external">https://xdebug.org/wizard.php</a>这里，系统会自动推荐给你合适的版本。<br>下载并解压安装包，cd到你的解压目录下，输入以下命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">phpize</div><div class="line">./configure</div><div class="line">make</div><div class="line">make install</div></pre></td></tr></table></figure></p>
-<p>在你的php.ini配置中加入以下内容<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Zend_extension=xdebug.so</div><div class="line">[Xdebug]</div><div class="line">xdebug.remote_enable = 1</div></pre></td></tr></table></figure></p>
-<p>之前extension前面没加zend，结果一直没反应，这点要注意，Xdebug只能用zend_extension,至于它们之间的区别，请自行Google。<br>重启nginx或者apache，然后通过phpinfo()查看Xdebug是否安装成功且正常启用。<br><img src="2017-10-10 23-01-42.png" alt=""><br>记住上面的端口号，一般都是默认9000。</p>
-<h2 id="配置PhpStorm"><a href="#配置PhpStorm" class="headerlink" title="配置PhpStorm"></a>配置PhpStorm</h2><p>进到phpstorm设置<br><img src="2017-10-10 23-05-18.png" alt=""><br>查看Debug port端口是否和刚刚记住的端口号一致，不一致请自行修改为phpinfo()上显示的端口。<br>给PhpStorm添加一个Server，参考下图设置<br><img src="2017-10-10 23-10-05.png" alt=""><br>添加PHP Web Application，具体步骤参考下图<br><img src="2017-10-10 23-21-45.png" alt=""><br><img src="2017-10-10 23-23-23.png" alt=""><br><img src="2017-10-10 23-24-24.png" alt=""><br>添加这个是能通过点击菜单Run-&gt;Debug-&gt;你的web application的名字，然后在浏览器打开一个带有debug标志链接的页面，像下图这样<br><img src="2017-10-10 23-29-10.png" alt=""></p>
-<h2 id="有用的chrome扩展-Xdebug-helper"><a href="#有用的chrome扩展-Xdebug-helper" class="headerlink" title="有用的chrome扩展(Xdebug helper)"></a>有用的chrome扩展(Xdebug helper)</h2><p>chrome应用商店下载<br><img src="2017-10-10 23-35-21.png" alt=""><br>记得在IDE key那里选择相应的IDE。</p>
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>点亮小电话，电话两头都变绿，开启调试监听，参考下图<br><img src="draw.png" alt=""><br>建立一个测试文件，像下图那样设置一个断点<br><img src="2017-10-10 23-39-48.png" alt=""><br>运行，参考下图，发现只有d1一个变量，断点起作用了，说明Xdebug配置成功<br><img src="2017-10-11 00-03-36.png" alt=""><br>然后你就可以感受Xdebug的强大了。</p>
+        <p>故事的开始当然是具体需求了，为了省点流量，平时上网都用openvpn，所以每次连接都要输帐号密码，感觉太麻烦了，如果能写个脚本模拟键盘输入，那岂不是爽歪歪了，基于这个想法我就去网上找了找方法，果不其然，Google还是挺给力的，让我找到了expect这个玩意，废话不多说，进入正题。</p>
+<p>expect是基于Tcl的，至于Tcl是什么，自己去网上搜搜吧，这里先给个页面很好看的<a href="http://xstarcd.github.io/wiki/shell/expect.html" target="_blank" rel="external">expect教程</a>，原理和语法可以参考这上面。</p>
+<p>下面讲安装过程了。</p>
+<h3 id="1-Tcl安装"><a href="#1-Tcl安装" class="headerlink" title="1. Tcl安装"></a>1. Tcl安装</h3><p>刚刚说过expect是基于Tcl的，So，我们得先装Tcl -&gt;<a href="https://sourceforge.net/projects/tcl/files/latest/download?source=files" target="_blank" rel="external">源码包</a>，解压，安装配置参考下面</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cd tcl8.6.7/unix</div><div class="line">./configure --prefix=/usr/tcl --enable-shared</div><div class="line">make</div><div class="line">make install</div></pre></td></tr></table></figure>
+<p>安装完毕以后，进入tcl源代码的根目录，把子目录unix下面的tclUnixPort.h copy到子目录generic中。</p>
+<p>注意先别删除tcl源码，一会expect的安装过程还需要用。</p>
+<h3 id="2-expect安装"><a href="#2-expect安装" class="headerlink" title="2. expect安装"></a>2. expect安装</h3><p>下载<a href="https://sourceforge.net/projects/expect/files/latest/download?source=files" target="_blank" rel="external">源码包</a></p>
+<p>解压</p>
+<p>安装配置参考下面</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">cd expect5.45.3</div><div class="line">./configure --prefix=/usr/expect --with-tcl=/usr/tcl/lib --with-tclinclude=你的Tcl安装目录/generic</div><div class="line">## 注意务必写正确Tcl的正确路径</div><div class="line">make</div><div class="line">make install</div><div class="line">ln -s /usr/tcl/bin/expect /bin/expect</div></pre></td></tr></table></figure>
+<h3 id="3-这里给个例子"><a href="#3-这里给个例子" class="headerlink" title="3. 这里给个例子"></a>3. 这里给个例子</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">#！/bin/expect</div><div class="line">spawn sudo vi /etc/passwd</div><div class="line">expect &quot;*for username:*&quot; #改成你自己的用户</div><div class="line">send &quot;psd\r&quot; #改成你自己的密码</div><div class="line">interact</div></pre></td></tr></table></figure>
+<p>具体使用方法参考上文给出的教程，Bye</p>
 
       
     </div>
@@ -380,11 +372,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/PHP/" rel="tag"># PHP</a>
+            <a href="/tags/linux/" rel="tag"># linux</a>
           
-            <a href="/tags/PhpStorm/" rel="tag"># PhpStorm</a>
-          
-            <a href="/tags/Debug/" rel="tag"># Debug</a>
+            <a href="/tags/shell/" rel="tag"># shell</a>
           
         </div>
       
@@ -397,15 +387,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/10/09/xdebug/" rel="next" title="Xdebug配置">
+                <i class="fa fa-chevron-left"></i> Xdebug配置
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/11/13/expect/" rel="prev" title="expect-自动交互脚本安装配置">
-                expect-自动交互脚本安装配置 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -556,7 +546,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Xdebug下载安装"><span class="nav-number">1.</span> <span class="nav-text">Xdebug下载安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置PhpStorm"><span class="nav-number">2.</span> <span class="nav-text">配置PhpStorm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#有用的chrome扩展-Xdebug-helper"><span class="nav-number">3.</span> <span class="nav-text">有用的chrome扩展(Xdebug helper)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用"><span class="nav-number">4.</span> <span class="nav-text">使用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Tcl安装"><span class="nav-number">1.</span> <span class="nav-text">1. Tcl安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-expect安装"><span class="nav-number">2.</span> <span class="nav-text">2. expect安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-这里给个例子"><span class="nav-number">3.</span> <span class="nav-text">3. 这里给个例子</span></a></li></ol></div>
             
 
           </div>
